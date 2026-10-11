@@ -1,5 +1,6 @@
-
 document.addEventListener("DOMContentLoaded", () => {
+    const currentPage = window.location.pathname.split("/").pop() || "beranda.html";
+
     const menuButton = document.getElementById("menu-button");
     const mobileMenu = document.getElementById("mobile-menu");
     const menuIcon = document.getElementById("menu-icon");
@@ -41,28 +42,32 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     document.querySelectorAll(".mobile-tab").forEach(tab => {
+        const href = (tab.getAttribute("href") || "").split("?")[0];
+        const isActive = href.endsWith(currentPage);
+
+        tab.classList.toggle("active", isActive);
+        tab.classList.toggle("text-slate-900", isActive);
+        tab.classList.toggle("text-slate-500", !isActive);
+
+        const line = tab.querySelector(".active-line");
+        if (line) {
+            line.classList.toggle("hidden", !isActive);
+        }
+
         tab.addEventListener("click", () => {
             document.querySelectorAll(".mobile-tab").forEach(item => {
-                item.classList.remove("active");
-                item.classList.remove("text-slate-900");
-                item.classList.add("text-slate-500");
+                const itemHref = (item.getAttribute("href") || "").split("?")[0];
+                const itemIsActive = itemHref.endsWith(currentPage);
 
-                const line = item.querySelector(".active-line");
+                item.classList.toggle("active", item === tab);
+                item.classList.toggle("text-slate-900", item === tab);
+                item.classList.toggle("text-slate-500", item !== tab);
 
-                if (line) {
-                    line.classList.add("hidden");
+                const itemLine = item.querySelector(".active-line");
+                if (itemLine) {
+                    itemLine.classList.toggle("hidden", item !== tab);
                 }
             });
-
-            tab.classList.add("active");
-            tab.classList.remove("text-slate-500");
-            tab.classList.add("text-slate-900");
-
-            const line = tab.querySelector(".active-line");
-
-            if (line) {
-                line.classList.remove("hidden");
-            }
         });
     });
 
