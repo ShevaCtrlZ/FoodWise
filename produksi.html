@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>EcoKitchen - Kelola Produksi Lebih Berkelanjutan</title>
+    <meta name="description"
+        content="Kelola persediaan bahan, rencanakan produksi, dan pantau limbah dalam satu dashboard.">
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <style type="text/tailwindcss">
+        @theme {
+            --font-sans: "Inter", sans-serif;
+            --color-eco-50: #f0fdf4;
+            --color-eco-100: #dcfce7;
+            --color-eco-600: #16a34a;
+            --color-eco-700: #15803d;
+            --color-eco-800: #166534;
+            --color-eco-900: #14532d;
+        }
+    </style>
+</head>
+
+<body class="bg-white font-sans text-slate-800 antialiased">
+
+    <header class="sticky top-0 z-50 border-b border-slate-100 bg-white/95 backdrop-blur">
+        <nav class="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 lg:px-8">
+
+            <a href="#" class="flex items-center gap-2">
+                <span class="flex h-10 w-10 items-center justify-center rounded-xl bg-eco-700 text-xl text-white">
+                    🌿
+                </span>
+                <span class="text-xl font-extrabold tracking-tight text-eco-900">
+                    EcoKitchen
+                </span>
+            </a>
+
+            <div class="hidden items-center gap-8 md:flex">
+                <a href="beranda.html" class="text-sm font-medium text-slate-600 transition hover:text-eco-700">
+                    Beranda
+                </a>
+                <a href="persediaan.html" class="text-sm font-medium text-slate-600 transition hover:text-eco-700">
+                    Persediaan
+                </a>
+                <a href="produksi.html" class="text-sm font-medium text-slate-600 transition hover:text-eco-700">
+                    Produksi
+                </a>
+                <a href="limbah.html" class="text-sm font-medium text-slate-600 transition hover:text-eco-700">
+                    Limbah
+                </a>
+            </div>
+
+        </nav>
+    </header>
+
+    <main class="pb-24">
+        <section>
+            <h1 class="mt-2 text-[26px] font-extrabold tracking-tight text-slate-800 sm:text-3xl">
+                PERENCANAAN PRODUKSI
+            </h1>
+
+            <p id="tanggal" class="mt-1.5 text-xs text-slate-500 sm:text-sm">
+                Ringkasan dapur hari ini
+            </p>
+        </section>
+        <section class="mt-5">
+            <div class="grid grid-cols-4 gap-2 rounded-2xl border border-slate-200 bg-white px-3 py-3">
+
+                <div class="flex flex-col items-center gap-1.5">
+                    <span class="flex h-7 w-7 items-center justify-center rounded-full bg-eco-100 text-xs font-bold text-eco-700">1</span>
+                    <span class="text-[10px] font-medium text-slate-600">Menu</span>
+                </div>
+
+                <div class="flex flex-col items-center gap-1.5">
+                    <span class="flex h-7 w-7 items-center justify-center rounded-full bg-eco-100 text-xs font-bold text-eco-700">2</span>
+                    <span class="text-[10px] font-medium text-slate-600">Target</span>
+                </div>
+
+                <div class="flex flex-col items-center gap-1.5">
+                    <span class="flex h-7 w-7 items-center justify-center rounded-full bg-eco-100 text-xs font-bold text-eco-700">3</span>
+                    <span class="text-[10px] font-medium text-slate-600">Stok jadi</span>
+                </div>
+
+                <div class="flex flex-col items-center gap-1.5">
+                    <span class="flex h-7 w-7 items-center justify-center rounded-full bg-eco-700 text-xs font-bold text-white">4</span>
+                    <span class="text-[10px] font-bold text-eco-700">Hasil</span>
+                </div>
+
+            </div>
+        </section>
+        <section class="mt-4 rounded-2xl border border-slate-200 bg-white p-3.5 sm:p-5">
+
+            <div>
+                <label for="menu" class="mb-2 block text-xs font-medium text-slate-700">
+                    1. Pilih menu
+                </label>
+
+                <select id="menu"
+                        class="w-full rounded-xl border border-slate-200 bg-white px-3 py-3 text-xs outline-none focus:border-eco-600 focus:ring-2 focus:ring-eco-100">
+                    <option value="nasi">Nasi goreng sayur</option>
+                    <option value="ayam">Ayam sayur</option>
+                    <option value="telur">Telur dadar sayur</option>
+                </select>
+            </div>
+
+            <div class="mt-4 grid grid-cols-2 gap-3">
+
+                <div>
+                    <label for="target" class="mb-2 block text-xs font-medium text-slate-700">
+                        2. Target produksi
+                    </label>
+
+                    <div class="flex items-center rounded-xl border border-slate-200 bg-white px-3">
+                        <input id="target" type="number" min="1" max="10000" value="40"
+                               class="w-full min-w-0 py-3 text-sm outline-none">
+                        <span class="text-[10px] text-slate-400">porsi</span>
+                    </div>
+                </div>
+
+                <div>
+                    <label for="stok-jadi" class="mb-2 block text-xs font-medium text-slate-700">
+                        3. Stok jadi
+                    </label>
+
+                    <div class="flex items-center rounded-xl border border-slate-200 bg-white px-3">
+                        <input id="stok-jadi" type="number" min="0" max="10000" value="15"
+                               class="w-full min-w-0 py-3 text-sm outline-none">
+                        <span class="text-[10px] text-slate-400">porsi</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <p class="mt-3 text-[10px] leading-4 text-slate-500">
+                ⓘ Stok jadi ialah jumlah porsi yang tersedia hari ini.
+            </p>
+        </section>
+
+        <!-- HASIL PERHITUNGAN -->
+        <section class="mt-4 rounded-2xl bg-eco-800 p-4 text-white sm:p-6">
+
+            <p class="text-[10px] font-semibold uppercase tracking-wide text-green-100">
+                4. Hasil perencanaan
+            </p>
+
+            <h2 id="hasil-porsi" class="mt-3 text-xl font-extrabold sm:text-3xl">
+                Perlu dibuat: 25 porsi
+            </h2>
+
+            <p id="rincian-porsi" class="mt-3 text-[10px] leading-5 text-green-100 sm:text-sm">
+                40 porsi target − 15 porsi stok jadi = 25 porsi
+            </p>
+
+            <div class="mt-4 h-1.5 overflow-hidden rounded-full bg-white/20">
+                <div id="progress" class="h-full rounded-full bg-[#b9e5a9]" style="width:37.5%"></div>
+            </div>
+
+        </section>
+        <section class="mt-5">
+
+            <div class="flex items-center justify-between">
+                <h2 class="text-sm font-extrabold sm:text-base">
+                    Kebutuhan bahan
+                </h2>
+
+                <span id="kebutuhan-label" class="text-[10px] text-slate-500">
+                    Untuk 25 porsi
+                </span>
+            </div>
+
+            <p class="mt-2 text-[10px] leading-4 text-slate-500">
+                Dihitung dari resep standar per porsi.
+            </p>
+
+            <div id="bahan-list" class="mt-3 space-y-2">
+                <!-- Diisi JavaScript -->
+            </div>
+
+        </section>
+
+        <!-- PERINGATAN -->
+        <section id="peringatan"
+                 class="mt-4 flex items-start gap-2.5 rounded-xl border border-amber-200 bg-[#fff2d1] p-3.5">
+
+            <span class="text-base text-amber-700">⚠</span>
+
+            <p id="peringatan-text" class="text-[10px] leading-5 text-amber-800">
+                Wortel kurang 0,2 kg. Lengkapi stok sebelum mulai produksi.
+            </p>
+
+        </section>
+        <button id="simpan-rencana"
+                type="button"
+                class="mt-3 flex w-full items-center justify-center gap-2 rounded-xl bg-eco-700 px-4 py-3.5 text-sm font-semibold text-white transition hover:bg-eco-800">
+            <span>✓</span>
+            Simpan rencana
+        </button>
+
+        <p id="status-simpan" class="mt-2 text-center text-[10px] text-slate-500">
+            Menyimpan rencana tidak mengurangi stok bahan.
+        </p>
+    </main>
+    <div class="fixed inset-x-0 bottom-0 z-50 border-t border-slate-200 bg-white/95 backdrop-blur md:hidden">
+        <nav class="mx-auto grid max-w-md grid-cols-5">
+            <a href="beranda.html" class="mobile-tab active flex flex-col items-center justify-center gap-1 py-2 text-slate-500">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 10.5 12 3l9 7.5"/>
+                    <path d="M5 9.5V21h14V9.5"/>
+                </svg>
+                <span class="text-[11px] font-medium">Beranda</span>
+                <span class="active-line mt-1 hidden h-[3px] w-10 rounded-full bg-slate-900"></span>
+            </a>
+
+            <a href="persediaan.html" class="mobile-tab flex flex-col items-center justify-center gap-1 py-2 text-slate-500">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 7.5A2.5 2.5 0 0 1 6.5 5h11A2.5 2.5 0 0 1 20 7.5v9A2.5 2.5 0 0 1 17.5 19h-11A2.5 2.5 0 0 1 4 16.5z"/>
+                    <path d="M8 5v4m8-4v4M4 11h16"/>
+                </svg>
+                <span class="text-[11px] font-medium">Persediaan</span>
+                <span class="active-line mt-1 hidden h-[3px] w-10 rounded-full bg-slate-900"></span>
+            </a>
+
+            <a href="produksi.html" class="mobile-tab flex flex-col items-center justify-center gap-1 py-2 text-slate-500">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 18V7.5A2.5 2.5 0 0 1 6.5 5h11A2.5 2.5 0 0 1 20 7.5V18"/>
+                    <path d="M8 9h8m-8 4h8M8 18h8"/>
+                </svg>
+                <span class="text-[11px] font-medium">Produksi</span>
+                <span class="active-line mt-1 hidden h-[3px] w-10 rounded-full bg-slate-900"></span>
+            </a>
+
+            <a href="limbah.html" class="mobile-tab flex flex-col items-center justify-center gap-1 py-2 text-slate-500">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 6h18"/>
+                    <path d="M8 6V4h8v2"/>
+                    <path d="M19 6l-1 14H6L5 6"/>
+                    <path d="M10 11v5M14 11v5"/>
+                </svg>
+                <span class="text-[11px] font-medium">Limbah</span>
+                <span class="active-line mt-1 hidden h-[3px] w-10 rounded-full bg-slate-900"></span>
+            </a>
+
+            <a href="#laporan.html" class="mobile-tab flex flex-col items-center justify-center gap-1 py-2 text-slate-500">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 20V8m7 12V4m7 16v-9"/>
+                    <path d="M3 20h18"/>
+                </svg>
+                <span class="text-[11px] font-medium">Laporan</span>
+                <span class="active-line mt-1 hidden h-[3px] w-10 rounded-full bg-slate-900"></span>
+            </a>
+        </nav>
+    </div>
+
+    <style>
+        .mobile-tab.active {
+            color: #0f172a;
+        }
+
+        .mobile-tab.active .active-line {
+            display: block;
+        }
+    </style>
+
+    <script src="js/script.js"></script>
+</body>
+<div id="toast"
+     role="status"
+     class="fixed bottom-24 left-1/2 z-[60] hidden -translate-x-1/2 rounded-xl bg-slate-900 px-4 py-3 text-center text-xs text-white shadow-lg md:bottom-6">
+</div>
+</html>
